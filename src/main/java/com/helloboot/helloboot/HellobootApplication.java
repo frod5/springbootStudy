@@ -1,6 +1,7 @@
 package com.helloboot.helloboot;
 
 import com.helloboot.helloboot.controller.IndexController;
+import com.helloboot.helloboot.service.v1.impl.SimpleHelloService;
 import org.apache.catalina.startup.Tomcat;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -26,6 +27,7 @@ public class HellobootApplication {
     public static void main(String[] args) {
         GenericApplicationContext applicationContext = new GenericApplicationContext();
         applicationContext.registerBean(IndexController.class);
+        applicationContext.registerBean(SimpleHelloService.class);
         applicationContext.refresh();
 
         TomcatServletWebServerFactory tomcatServletWebServerFactory = new TomcatServletWebServerFactory();

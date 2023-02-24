@@ -1,20 +1,24 @@
 package com.helloboot.helloboot.controller;
 
-import com.helloboot.helloboot.service.SimpleHelloService;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
+import com.helloboot.helloboot.service.HelloService;
+import com.helloboot.helloboot.service.v1.impl.SimpleHelloService;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Objects;
 
 //@RequestMapping({"/v1/test"})
 //@RestController
 public class IndexController {
+
+    private final HelloService helloService;
+
+    public IndexController(HelloService helloService) {
+        this.helloService=helloService;
+    }
+
+
     //@GetMapping("/{name}")
     public String hello(@PathVariable String name) {
-        SimpleHelloService simpleHelloService = new SimpleHelloService();
-        return simpleHelloService.sayHello(Objects.requireNonNull(name));
+        return helloService.sayHello(Objects.requireNonNull(name));
     }
 }

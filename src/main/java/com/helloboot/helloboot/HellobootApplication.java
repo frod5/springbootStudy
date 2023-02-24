@@ -29,17 +29,24 @@ public class HellobootApplication {
     public static void main(String[] args) {
 
         //Spring Container 생성
-        GenericWebApplicationContext applicationContext = new GenericWebApplicationContext();
+        GenericWebApplicationContext applicationContext = new GenericWebApplicationContext() {
+            @Override
+            protected void onRefresh() {
+                super.onRefresh();
+
+                //Servelt Container 생성 및 실행
+                TomcatServletWebServerFactory tomcatServletWebServerFactory = new TomcatServletWebServerFactory();
+                WebServer webServer = tomcatServletWebServerFactory.getWebServer(servletContext -> {
+                    servletContext.addServlet("dispatcherServelt", new DispatcherServlet(this)).addMapping("/*");
+                });
+                webServer.start();
+
+            }
+        };
+
         applicationContext.registerBean(IndexController.class);
         applicationContext.registerBean(SimpleHelloService.class);
         applicationContext.refresh();
-
-        //Servelt Container 생성 및 실행
-        TomcatServletWebServerFactory tomcatServletWebServerFactory = new TomcatServletWebServerFactory();
-        WebServer webServer = tomcatServletWebServerFactory.getWebServer(servletContext -> {
-            servletContext.addServlet("dispatcherServelt", new DispatcherServlet(applicationContext)).addMapping("/*");
-        });
-        webServer.start();
     }
 
 }

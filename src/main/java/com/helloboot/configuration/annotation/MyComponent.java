@@ -1,4 +1,4 @@
-package com.helloboot.helloboot.annotation;
+package com.helloboot.configuration.annotation;
 
 
 import org.springframework.stereotype.Component;

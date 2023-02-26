@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE) // TYPE은 class, interface, enum에 적용할 때 사용.
 @Configuration
-@ComponentScan
+@ComponentScan(basePackages = "com.helloboot.helloboot")
 @EnableMyAutoConfiguration
 public @interface MySpringBootApplication {
 }

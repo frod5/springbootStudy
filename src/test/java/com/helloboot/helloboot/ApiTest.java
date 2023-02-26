@@ -9,7 +9,27 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+@UnitTest
+@interface FastUnitTest{
+
+}
+
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.ANNOTATION_TYPE,ElementType.METHOD})
+@Test
+@interface UnitTest {
+
+}
 public class ApiTest {
+    //@UnitTest
+    //@FastUnitTest
     @Test
     void helloApi() {
         TestRestTemplate rest = new TestRestTemplate();
@@ -24,6 +44,6 @@ public class ApiTest {
         Assertions.assertThat(res.getHeaders().getFirst(HttpHeaders.CONTENT_TYPE)).startsWith(MediaType.TEXT_PLAIN_VALUE);
 
         //body hello SpringBoot
-        Assertions.assertThat(res.getBody()).isEqualTo("Hello SpringBoot");
+        Assertions.assertThat(res.getBody()).isEqualTo( "* Hello SpringBoot *");
     }
 }

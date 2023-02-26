@@ -3,6 +3,9 @@ package com.helloboot.helloboot.controller;
 import com.helloboot.helloboot.annotation.MyComponent;
 import com.helloboot.helloboot.service.HelloService;
 import com.helloboot.helloboot.service.v1.impl.SimpleHelloService;
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -16,9 +19,13 @@ import java.util.Objects;
 public class IndexController {
 
     private final HelloService helloService;
+    private final ApplicationContext applicationContext;
 
-    public IndexController(HelloService helloService) {
+    public IndexController(HelloService helloService, ApplicationContext applicationContext) {
         this.helloService=helloService;
+        this.applicationContext = applicationContext;
+
+        System.out.println(applicationContext);
     }
 
     @GetMapping("/hello/{name}")

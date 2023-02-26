@@ -19,18 +19,18 @@ import java.util.Objects;
 public class IndexController {
 
     private final HelloService helloService;
-    private final ApplicationContext applicationContext;
 
-    public IndexController(HelloService helloService, ApplicationContext applicationContext) {
+    public IndexController(HelloService helloService) {
         this.helloService=helloService;
-        this.applicationContext = applicationContext;
-
-        System.out.println(applicationContext);
     }
 
     @GetMapping("/hello/{name}")
     @ResponseBody // Controller에 @RestController 어노테이션이 있으면 모든 메소드에 사실상 ResponseBody가 붙는것.
     public String hello(@PathVariable String name) {
-        return helloService.sayHello(Objects.requireNonNull(name));
+
+        if(null == name || name.trim().length() == 0){
+            throw new IllegalArgumentException();
+        }
+        return helloService.sayHello(name);
     }
 }

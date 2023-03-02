@@ -2,3 +2,4 @@ com.helloboot.configuration.autoconfig.DispatcherServletConfiguration
 com.helloboot.configuration.autoconfig.TomcatWebServerConfiguration
 com.helloboot.configuration.autoconfig.JettyWebServerConfiguration
 com.helloboot.configuration.autoconfig.PropertyPlaceholderConfig
+com.helloboot.configuration.autoconfig.ServerPropertiesConfig

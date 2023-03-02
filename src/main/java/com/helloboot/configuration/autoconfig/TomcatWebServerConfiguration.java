@@ -19,13 +19,15 @@ import org.springframework.core.env.Environment;
 //사용자정보구성(ComponentScan) / 자동정보구성(AutoConfiguration)
 //자동구성정보 보다 사용자 구성정보를 먼저 등록함 -> 자동구성정보에서 빈 생성시 사용자 구성정보에 이미 같은 빈이 있는 경우 생성안하도록 메소드 단위에서 처리 @ConditionalOnMissingBean
 public class TomcatWebServerConfiguration {
-    @Value("${contextPath}")
-    private String contextPath;
+
     @Bean("tomcatWebSeverFactory")
     @ConditionalOnMissingBean //사용자 구성정보에서 해당 빈이 있는 경우 빈 생성x
-    public ServletWebServerFactory servletWebServerFactory() {
+    public ServletWebServerFactory servletWebServerFactory(ServerProperties serverProperties) {
         TomcatServletWebServerFactory factory = new TomcatServletWebServerFactory();
-        factory.setContextPath(this.contextPath);
+        factory.setContextPath(serverProperties.getContextPath());
+        factory.setPort(serverProperties.getPort());
         return factory;
     }
+
+
 }

@@ -1,17 +1,16 @@
 package com.helloboot.configuration.autoconfig;
 
+import com.helloboot.configuration.annotation.EnableMyConfigurationProperties;
 import com.helloboot.configuration.annotation.ConditionalMyOnClass;
 import com.helloboot.configuration.annotation.MyAutoConfiguration;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Conditional;
-import org.springframework.core.env.Environment;
 
 @MyAutoConfiguration
 @ConditionalMyOnClass("org.apache.catalina.startup.Tomcat")
+@EnableMyConfigurationProperties(ServerProperties.class)
 //@Conditional(TomcatWebServerConfiguration.TomcatCondition.class)
 //@Condition은 @Configuration에서 사용할 경우 해당 Configuration붙은 클래스에 대해 맞는거만 빈생성을 하고,
 //@Bean 즉, 메소드 단위에서 사용할 경우 해당빈을 조건에 따라 생성.

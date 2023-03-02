@@ -1,7 +1,10 @@
 package com.helloboot.configuration.autoconfig;
 
-import org.springframework.beans.factory.annotation.Value;
+import com.helloboot.configuration.annotation.MyConfigurationProperties;
+import org.springframework.stereotype.Component;
 
+
+@MyConfigurationProperties(prefix = "server")
 public class ServerProperties {
     private String contextPath;
 

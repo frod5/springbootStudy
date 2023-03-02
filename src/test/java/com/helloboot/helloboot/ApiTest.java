@@ -33,7 +33,7 @@ public class ApiTest {
     @Test
     void helloApi() {
         TestRestTemplate rest = new TestRestTemplate();
-        String url = "http://localhost:8080/hello/{name}";
+        String url = "http://localhost:8080/app/hello/{name}";
         ResponseEntity<String> res = rest.getForEntity(url, String.class, "SpringBoot");
 
         //응답검증

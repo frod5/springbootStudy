@@ -7,6 +7,7 @@ import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactor
 import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Conditional;
+import org.springframework.core.env.Environment;
 
 @MyAutoConfiguration
 @ConditionalMyOnClass("org.apache.catalina.startup.Tomcat")
@@ -19,7 +20,9 @@ import org.springframework.context.annotation.Conditional;
 public class TomcatWebServerConfiguration {
     @Bean("tomcatWebSeverFactory")
     @ConditionalOnMissingBean //사용자 구성정보에서 해당 빈이 있는 경우 빈 생성x
-    public ServletWebServerFactory servletWebServerFactory() {
-        return new TomcatServletWebServerFactory();
+    public ServletWebServerFactory servletWebServerFactory(Environment env) {
+        TomcatServletWebServerFactory factory = new TomcatServletWebServerFactory();
+        factory.setContextPath(env.getProperty("contextPath"));
+        return factory;
     }
 }

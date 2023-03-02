@@ -11,18 +11,12 @@ import org.springframework.core.env.Environment;
 @MySpringBootApplication  //합성 어노테이션 적용
 public class HellobootApplication {
 
-    @Bean
-    ApplicationRunner applicationRunner(Environment environment) {
-        return args -> {
-            String name = environment.getProperty("my.name");
-            //우선순위
-            //1.servlet 설정 프로퍼티(web.xml, JNDI)
-            //2.시스템 프로퍼티(VM옵션)
-            //3.환경변수(Environment Variable)
-            //4.application.properties파일에 선언된것.
-            System.out.println(name);
-        };
-    }
+    //우선순위 evn.getProperty("my.name")
+    //1.servlet 설정 프로퍼티(web.xml, JNDI)
+    //2.시스템 프로퍼티(VM옵션)
+    //3.환경변수(Environment Variable)
+    //4.application.properties파일에 선언된것.
+
     public static void main(String[] args) {
         //Spring Container 생성
         SpringApplication.run(HellobootApplication.class, args);

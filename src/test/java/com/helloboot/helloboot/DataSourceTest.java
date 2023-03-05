@@ -1,20 +1,13 @@
 package com.helloboot.helloboot;
 
-import com.helloboot.configuration.HellobootApplication;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
-
-@ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = HellobootApplication.class)
-@TestPropertySource("classpath:/application.properties")
+@JdbcTest
 public class DataSourceTest {
     @Autowired
     DataSource dataSource;

@@ -16,7 +16,7 @@ public class DataSourceConfig {
 
     @Bean
     @ConditionalMyOnClass("com.zaxxer.hikari.HikariDataSource")
-    DataSource hikariDataSoure(MyDataSourceProperties properties) {
+    DataSource hikariDataSource(MyDataSourceProperties properties) {
         HikariDataSource dataSource = new HikariDataSource();
         dataSource.setDriverClassName(properties.getDriverClassName());
         dataSource.setJdbcUrl(properties.getUrl());

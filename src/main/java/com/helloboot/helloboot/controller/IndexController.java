@@ -25,4 +25,14 @@ public class IndexController {
         }
         return helloService.sayHello(name);
     }
+
+    @GetMapping("/hello/count/{name}")
+    @ResponseBody // Controller에 @RestController 어노테이션이 있으면 모든 메소드에 사실상 ResponseBody가 붙는것.
+    public String helloCount(@PathVariable String name) {
+
+        if(null == name || name.trim().length() == 0){
+            throw new IllegalArgumentException();
+        }
+        return name+ ": " +helloService.countOf(name);
+    }
 }

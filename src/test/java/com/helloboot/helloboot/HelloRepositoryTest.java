@@ -16,12 +16,6 @@ public class HelloRepositoryTest {
 
     @Autowired
     HelloRepository helloRepository;
-
-    @BeforeEach
-    void init() {
-        jdbcTemplate.execute("CREATE TABLE IF NOT EXISTS hello(name varchar(50) primary key, count int)");
-    }
-
     @Test
     void findHelloFalid() {
         Assertions.assertThat(helloRepository.findHello("Sunwoo")).isNull();

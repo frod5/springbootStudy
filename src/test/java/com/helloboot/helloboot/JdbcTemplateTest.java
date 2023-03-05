@@ -11,12 +11,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public class JdbcTemplateTest {
     @Autowired
     JdbcTemplate jdbcTemplate;
-
-    @BeforeEach
-    void init() {
-        jdbcTemplate.execute("CREATE TABLE IF NOT EXISTS hello(name varchar(50) primary key, count int)");
-    }
-
     @Test
     void insertAndQuery() {
         jdbcTemplate.update("insert into hello values(?,?)","Sunwoo",3);

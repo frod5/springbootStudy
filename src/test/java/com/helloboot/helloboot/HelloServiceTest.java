@@ -1,16 +1,17 @@
 package com.helloboot.helloboot;
 
-import com.helloboot.helloboot.annotation.JdbcTest;
 import com.helloboot.helloboot.repository.HelloRepository;
 import com.helloboot.helloboot.service.HelloService;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.stream.IntStream;
 
-@JdbcTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@Transactional
 public class HelloServiceTest {
     @Autowired
     HelloService helloService;

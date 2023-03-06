@@ -1,13 +1,12 @@
 package com.helloboot.helloboot;
 
-import com.helloboot.helloboot.annotation.JdbcTest;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-@JdbcTest
+@JdbcTest //사용하면 임베디드 디비를 사용하여 조금더 빠르게 테스트가능.
 public class JdbcTemplateTest {
     @Autowired
     JdbcTemplate jdbcTemplate;

@@ -2,6 +2,7 @@ package com.helloboot.helloboot;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -27,6 +28,7 @@ import java.lang.annotation.Target;
 @interface UnitTest {
 
 }
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT) //실제 톰캣을 띄우고 테스트를 하도록 설정.
 public class ApiTest {
     //@UnitTest
     //@FastUnitTest
